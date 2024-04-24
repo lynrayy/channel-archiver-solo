@@ -1,6 +1,10 @@
+import threading
+import time
 import config, auth
 import os
 from app import app
+from handlers import channel_post_new, channel_post_deleted
+h1, h2 = channel_post_new.PostNewHandler, channel_post_deleted.PostDelHandler
 
 
 def warnings():
@@ -46,6 +50,10 @@ def warnings():
 
     print(f"\nПосты будут сохраняться в архив как {'собственные посты' if config.store_as_archive else 'репосты из источника'}\n\n--------------Бот запущен--------------")
 
+def echo():
+    print("Начинаю запуск")
+    time.sleep(5)
+    app.send_message(config.archive_channel_id, "Бот запущен")
 
 def main():
     while True:
@@ -57,4 +65,5 @@ def main():
 
 if __name__ == '__main__':
     warnings()
+    # threading.Thread(target=echo).start()
     main()
