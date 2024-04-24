@@ -1,3 +1,3 @@
 title TG Channel-Archiver Bot
-"venv/Scripts/python.exe" "main.py"
+"python311/python.exe" "main.py"
 pause
