@@ -5,7 +5,7 @@ from datetime import datetime
 import config
 
 
-@app.on_message(filters.channel & filters.chat(config.source_channel_id))
+@app.on_message(filters.chat(config.source_channel_id))
 async def on_new_post(client: Client, message: Message):
     if message.media_group_id is not None:
         mgid, is_mgid_new = MediaGroup.get_or_create(source_channel_id=message.chat.id, source_mg_id=message.media_group_id)
